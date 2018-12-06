@@ -1,37 +1,45 @@
-## WelcometoGitHubPages
+# How can I fix & solve merge conflicts?
 
-You can use the [editor on GitHub](https://github.com/dinesh-rawat/git/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+![](https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1544087929446-1.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+if you keep a couple of things in mind, solving conflicts is easy as pie:
 
-### Markdown
+### Keep calm? <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);"> </span>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Git always allows you to go back to the state before the conflict occurred. With a simple "**git merge --abort**",  you can always undo the merge and start over again.
 
-```markdown
-Syntax highlighted code block
+**How do I Know I Have a Conflict? <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f631.svg);"> </span> **
 
-# Header 1
-## Header 2
-### Header 3
+When calling "git status", you'll see a special **Unmerged paths** category.  All of the items in this category are in a conflict state and need to be dealt with:
 
-- Bulleted
-- List
+![](https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1544088507557-2.png)
 
-1. Numbered
-2. List
+**Understand When & Why a Conflict Happens?<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61c.svg);"> </span> **
 
-**Bold** and _Italic_ and `Code` text
+Conflicts occur when the same file was changed in contradictory ways.  If two people _just_ work on the same file, Git can most likely figure things out on its own. 
 
-[Link](url) and ![Image](src)
-```
+The most common situation when it _cannot_ do this is when the **exact same lines were edited** in that file. In that case, Git has no way of knowing what's correct - you'll have to look at the changes and decide how you want the file to finally look.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**A Conflict is Just an Annotation <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61e.svg);"> </span> **
 
-### Jekyll Themes
+It helps to realize that a conflict is nothing magical. In the concerned file, Git simply marks the areas that were edited in contradictory ways:
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dinesh-rawat/git/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+![](https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1544093697458-3.png)
 
-### Support or Contact
+This helps you understand which edits were made - and even on which branches.
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**Solving Means Choosing & Editing <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f601.svg);"> </span> **
+
+Your job now is to condition the file to its desired state. There are a couple of ways to do this:
+
+**(a)** You can simply open the file in an editor, search for the conflict markers (see above image) and make any necessary modifications. When you're done, the file needs to look exactly as you _want_ it to look.  
+**(b)** Alternatively, you can tell Git that you'll simply go with one of the edited versions, called "ours" or "theirs". 
+
+    git checkout --ours path/to/conflict-file.css
+
+**Wrap Up <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60e.svg);"> </span> **
+
+When you've successfully solved all conflicts, you need to do two more things:
+
+**(1)** Mark each conflicted file as solved. A simple "**git add <filepath>**" does this for you.  
+**(2)** Commit the resolution just as you would commit any other change with the "**git commit**" command.
