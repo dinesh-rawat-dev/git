@@ -1,0 +1,31 @@
+<h1>How can I fix &amp; solve merge conflicts?</h1>
+<p><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1544087929446-1.png" style="width: 606px;" class="fr-fic fr-dib"></p>
+<p>if you keep a couple of things in mind, solving conflicts is easy as pie:</p>
+<h3>Keep calm? <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f600.svg);">&nbsp;</span></h3>
+<p>Git always allows you to go back to the state before the conflict occurred.&nbsp;With a simple &quot;<strong>git merge --abort</strong>&quot;, &nbsp;you can always undo the merge and start over again.</p>
+<p><br></p>
+<p><strong>How do I Know I Have a Conflict? <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f631.svg);">&nbsp;</span>&nbsp;</strong></p>
+<p>When calling &quot;git status&quot;, you&#39;ll see a special <strong>Unmerged paths</strong> category. &nbsp;All of the items in this category are in a conflict state and need to be dealt with:</p>
+<p><img src="https://s3-eu-west-1.amazonaws.com/froala-eu/temp_files%2F1544088507557-2.png" style="width: 586px;" class="fr-fic fr-dib"></p>
+<p><br></p>
+<p><strong>Understand When &amp; Why a Conflict Happens?<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61c.svg);">&nbsp;</span>&nbsp;</strong></p>
+<p>Conflicts occur when the same file was changed in contradictory ways. &nbsp;If two people <em>just</em> work on the same file, Git can most likely figure things out on its own.&nbsp;</p>
+<p>The most common situation when it <em>cannot</em> do this is when the <strong>exact same lines were edited</strong> in that file. In that case, Git has no way of knowing what&#39;s correct - you&#39;ll have to look at the changes and decide how you want
+    the file to finally look.</p>
+<p><br></p>
+<p><strong>A Conflict is Just an Annotation <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f61e.svg);">&nbsp;</span>&nbsp;</strong></p>
+<p>It helps to realize that a conflict is nothing magical. In the concerned file, Git simply marks the areas that were edited in contradictory ways:</p>
+<div class="fr-embedly " data-original-embed="<a href='https://www.git-tower.com/learn/content/01-git/04-faq/07-solve-merge-conflicts/01-conflict-markers.png' data-card-branding='0' class='embedly-card'></a>"
+    style="height: 95px;"><a href="https://www.git-tower.com/learn/content/01-git/04-faq/07-solve-merge-conflicts/01-conflict-markers.png" data-card-branding="0" class="embedly-card"></a></div>
+<p><br></p>
+<p>This helps you understand which edits were made - and even on which branches.</p>
+<p><br></p>
+<p><strong>Solving Means Choosing &amp; Editing&nbsp;<span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f601.svg);">&nbsp;</span>&nbsp;</strong></p>
+<p><br></p>
+<p>Your job now is to condition the file to its desired state. There are a couple of ways to do this:</p>
+<p><strong>(a)</strong> You can simply open the file in an editor, search for the conflict markers (see above image) and make any necessary modifications. When you&#39;re done, the file needs to look exactly as you <em>want</em> it to look.<br><strong>(b)</strong>    Alternatively, you can tell Git that you&#39;ll simply go with one of the edited versions, called &quot;ours&quot; or &quot;theirs&quot;.&nbsp;</p>
+<pre><code>git checkout --ours path/to/conflict-file.css</code></pre>
+<p><strong>Wrap Up <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f60e.svg);">&nbsp;</span>&nbsp;</strong></p>
+<p>When you&#39;ve successfully solved all conflicts, you need to do two more things:</p>
+<p><strong>(1)</strong> Mark each conflicted file as solved. A simple &quot;<strong>git add &lt;filepath&gt;</strong>&quot; does this for you.<br><strong>(2)</strong> Commit the resolution just as you would commit any other change with the &quot;<strong>git commit</strong>&quot;
+    command.</p>
